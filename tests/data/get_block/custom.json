@@ -6,18 +6,18 @@
       "custom_json",
       {
         "required_posting_auths": [
-          "steemit"
+          "dsite"
         ],
         "required_auths": [],
         "id": "follow",
         "json": "{"
         follower
         ":"
-        steemit
+        dsite
         ","
         following
         ":"
-        steem
+        dpay
         ","
         what
         ":["

@@ -7,31 +7,31 @@ import pytest
 import requests
 from requests.exceptions import ConnectionError
 
-from sbds.http_client import SimpleSteemAPIClient
-from sbds.storages.db.tables import Session
-from sbds.storages.db.utils import configure_engine
+from dpds.http_client import SimpleDPayAPIClient
+from dpds.storages.db.tables import Session
+from dpds.storages.db.utils import configure_engine
 
-import sbds
-import sbds.chain
-import sbds.chain.cli
-import sbds.server
-import sbds.server.cli
-import sbds.server.methods
-import sbds.server.serve
-import sbds.storages
-import sbds.storages.db
-import sbds.storages.db.cli
-import sbds.storages.db.data_types
-import sbds.storages.db.enums
-import sbds.storages.db.field_handlers
-import sbds.storages.db.query_helpers
-import sbds.storages.db.utils
-import sbds.storages.db.scripts
-import sbds.storages.db.scripts.populate
-import sbds.storages.db.tables.async_core
-import sbds.storages.db.tables.block
-import sbds.storages.db.tables.core
-import sbds.storages.db.tables.operations
+import dpds
+import dpds.chain
+import dpds.chain.cli
+import dpds.server
+import dpds.server.cli
+import dpds.server.methods
+import dpds.server.serve
+import dpds.storages
+import dpds.storages.db
+import dpds.storages.db.cli
+import dpds.storages.db.data_types
+import dpds.storages.db.enums
+import dpds.storages.db.field_handlers
+import dpds.storages.db.query_helpers
+import dpds.storages.db.utils
+import dpds.storages.db.scripts
+import dpds.storages.db.scripts.populate
+import dpds.storages.db.tables.async_core
+import dpds.storages.db.tables.block
+import dpds.storages.db.tables.core
+import dpds.storages.db.tables.operations
 
 
 TEST_DIR = os.path.dirname(__file__)
@@ -79,8 +79,8 @@ def first_block_dict():
 
 
 @pytest.fixture()
-def http_client(url='https://steemd.steemitdev.com', **kwargs):
-    return SimpleSteemAPIClient(url, **kwargs)
+def http_client(url='https://greatchain.dpays.io', **kwargs):
+    return SimpleDPayAPIClient(url, **kwargs)
 
 
 def is_responsive(url):
@@ -94,7 +94,7 @@ def is_responsive(url):
 
 
 @pytest.fixture(scope='session')
-def sbds_http_server(docker_ip, docker_services):
+def dpds_http_server(docker_ip, docker_services):
     """Ensure that "some service" is up and responsive."""
     url = 'http://localhost:9191'
     docker_services.wait_until_responsive(

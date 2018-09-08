@@ -8,11 +8,11 @@ services:
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: password
-       MYSQL_DATABASE: sbds
+       MYSQL_DATABASE: dpds
        MYSQL_USER: user
        MYSQL_PASSWORD: password
 
-   sbds:
+   dpds:
      depends_on:
        - db
      build: ..
@@ -20,9 +20,9 @@ services:
        - "8080:80"
      restart: always
      environment:
-       DATABASE_URL: mysql+mysqldb://user:password@db/sbds?charset=utf8mb4
-       STEEMD_HTTP_URL: https://api.steemit.com
-       SBDS_LOG_LEVEL: DEBUG
+       DATABASE_URL: mysql+mysqldb://user:password@db/dpds?charset=utf8mb4
+       DPAYD_HTTP_URL: https://api.dpays.io
+       DPDS_LOG_LEVEL: DEBUG
 
 volumes:
     db_data:

@@ -7,8 +7,8 @@
       {
         "author": "testing001",
         "allow_curation_rewards": true,
-        "max_accepted_payout": "1000.000 SBD",
-        "percent_steem_dollars": 5000,
+        "max_accepted_payout": "1000.000 BBD",
+        "percent_dpay_dollars": 5000,
         "allow_votes": true,
         "permlink": "testing6",
         "extensions": []
@@ -21,4 +21,3 @@
   "ref_block_num": 13118,
   "extensions": []
 }
-

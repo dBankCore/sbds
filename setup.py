@@ -2,14 +2,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='sbds',
+    name='dpds',
     version='0.1',
     packages=find_packages(),
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'sbds=sbds.cli:sbds',
-            'populate=sbds.storages.db.scripts.populate:populate',
+            'dpds=dpds.cli:dpds',
+            'populate=dpds.storages.db.scripts.populate:populate',
         ],
     },
 )

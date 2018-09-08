@@ -9,8 +9,8 @@ services:
       MYSQL_DATABASE: testdb
     ports:
      - 3306:3306
-  sbds:
-    image: steemit/sbds
+  dpds:
+    image: dpays/dpds
     ports:
       - "8080:8080"
       - "9191:9191"
@@ -18,8 +18,8 @@ services:
       - mysql
     environment:
       DATABASE_URL: mysql://root:root_password@mysql:3306/testdb
-      SBDS_LOG_LEVEL: DEBUG
-      STEEMD_URL: https://steemd.steemit.com
-      STEEMD_HTTP_URL: https://api.steemit.com
+      DPDS_LOG_LEVEL: DEBUG
+      STEEMD_URL: https://greatchain.dpays.io
+      STEEMD_HTTP_URL: https://api.dpays.io
     links:
       - mysql:db

@@ -37,12 +37,12 @@ def put_json(s3_resource, bucket, key, data):
         Body=json_data, ContentEncoding='UTF-8', ContentType='application/json')
     return key, result
 
-def fetch(steemd_url, block_num, method):
+def fetch(dpayd_url, block_num, method):
         if method == 'get_block':
             jsonrpc_data = dict(id=block_num,jsonrpc='2.0',method=method,params=[block_num])
         if method == 'get_ops_in_block':
             jsonrpc_data = dict(id=block_num,jsonrpc='2.0',method=method,params=[block_num,False])
-        response = Session.post(steemd_url,json=jsonrpc_data)
+        response = Session.post(dpayd_url,json=jsonrpc_data)
         response.raise_for_status()
         response_json = response.json()
         response_raw = response.content
@@ -51,10 +51,10 @@ def fetch(steemd_url, block_num, method):
         return response_raw, response_json
 
 @click.group(name='blockr')
-@click.option('--bucket', type=click.STRING, default='steemit-dev-sbds')
+@click.option('--bucket', type=click.STRING, default='dsite-dev-dpds')
 @click.pass_context
 def blockr(ctx, bucket):
-    """Steemd blockchain utils"""
+    """DPayd blockchain utils"""
     ctx.obj = dict(
         bucket=bucket,
         s3_resource=boto3.resource('s3'),
@@ -64,24 +64,24 @@ def blockr(ctx, bucket):
 
 
 @blockr.command(name='list-accounts')
-@click.argument('steemd_url', type=click.STRING)
+@click.argument('dpayd_url', type=click.STRING)
 @click.pass_context
-def list_accounts(ctx,steemd_url):
-    accounts = get_account_names(steemd_url)
+def list_accounts(ctx,dpayd_url):
+    accounts = get_account_names(dpayd_url)
     click.echo(json.dumps(accounts))
 
 
 @blockr.command(name='put-blocks')
-@click.argument('steemd_url', type=click.STRING, default='https://api.steemit.com')
+@click.argument('dpayd_url', type=click.STRING, default='https://api.dpays.io')
 @click.option('--start', type=click.INT, default=4)
 @click.option('--end', type=click.INT,default=20000000)
 @click.pass_context
-def put_blocks(ctx, steemd_url, start, end):
+def put_blocks(ctx, dpayd_url, start, end):
     s3_resource = ctx.obj['s3_resource']
     bucket = ctx.obj['bucket']
     for block_num in range(start, end+1):
         try:
-            raw, block  = fetch(steemd_url, block_num, 'get_block')
+            raw, block  = fetch(dpayd_url, block_num, 'get_block')
             block_key = '/'.join([str(block_num), 'block.json'])
             block = block['result']
             _, block_result = put_json(s3_resource, bucket, block_key, block)
@@ -90,16 +90,16 @@ def put_blocks(ctx, steemd_url, start, end):
             click.echo(str(e),err=True)
 
 @blockr.command(name='put-ops')
-@click.argument('steemd_url', type=click.STRING, default='https://api.steemit.com')
+@click.argument('dpayd_url', type=click.STRING, default='https://api.dpays.io')
 @click.option('--start', type=click.INT, default=1)
 @click.option('--end', type=click.INT,default=20000000)
 @click.pass_context
-def put_ops(ctx, steemd_url, start, end):
+def put_ops(ctx, dpayd_url, start, end):
     s3_resource = ctx.obj['s3_resource']
     bucket = ctx.obj['bucket']
     for block_num in range(start, end+1):
         try:
-            raw, ops = fetch(steemd_url, block_num, 'get_ops_in_block')
+            raw, ops = fetch(dpayd_url, block_num, 'get_ops_in_block')
             ops_key = '/'.join([str(block_num), 'ops.json'])
             ops = ops['result']
             _, ops_result = put_json(s3_resource, bucket, ops_key, ops)
@@ -108,21 +108,21 @@ def put_ops(ctx, steemd_url, start, end):
             click.echo(str(e),err=True)
 
 @blockr.command(name='put-blocks-and-ops')
-@click.argument('steemd_url', type=click.STRING, default='https://api.steemit.com')
+@click.argument('dpayd_url', type=click.STRING, default='https://api.dpays.io')
 @click.option('--start', type=click.INT, default=1)
 @click.option('--end', type=click.INT,default=20000000)
 @click.pass_context
-def put_blocks_and_ops(ctx, steemd_url, start, end):
+def put_blocks_and_ops(ctx, dpayd_url, start, end):
     s3_resource = ctx.obj['s3_resource']
     bucket = ctx.obj['bucket']
     for block_num in range(start, end+1):
         try:
-            raw, block = fetch(steemd_url, block_num, 'get_block')
+            raw, block = fetch(dpayd_url, block_num, 'get_block')
             block_key = '/'.join([str(block_num), 'block.json'])
             block = block['result']
             _, block_result = put_json(s3_resource, bucket, block_key, block)
             click.echo('{block_num}: block result:{block_result}'.format(block_num=block_num,block_result=block_result), err=True)
-            raw, ops = fetch(steemd_url, block_num, 'get_ops_in_block')
+            raw, ops = fetch(dpayd_url, block_num, 'get_ops_in_block')
             ops_key = '/'.join([str(block_num), 'ops.json'])
             ops = ops['result']
             _, ops_result = put_json(s3_resource, bucket, ops_key, ops)

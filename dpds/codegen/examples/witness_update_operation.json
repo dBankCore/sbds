@@ -1,0 +1,11 @@
+{
+  "fee": "0.000 BEX",
+  "url": "fmooo/dpayd-docker",
+  "props": {
+    "bbd_interest_rate": 1000,
+    "account_creation_fee": "100.000 BEX",
+    "maximum_block_size": 131072
+  },
+  "owner": "jared",
+  "block_signing_key": "DWB8LoQjQqJHvotqBo7HjnqmUbFW9oJ2theyqonzUd9DdJ7YYHsvD"
+}

@@ -10,10 +10,10 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
-      POSTGRES_DB: sbds
+      POSTGRES_DB: dpds
     ports:
        - "5432:5432"
-   sbds:
+   dpds:
      depends_on:
        - db
      build: .
@@ -21,8 +21,8 @@ services:
        - "8080:80"
      restart: always
      environment:
-       DATABASE_URL: postgresql+psycopg2://user:password@db/sbds
-       STEEMD_HTTP_URL: https://api.steemit.com
-       SBDS_LOG_LEVEL: DEBUG
+       DATABASE_URL: postgresql+psycopg2://user:password@db/dpds
+       DPAYD_HTTP_URL: https://api.dpays.io
+       DPDS_LOG_LEVEL: DEBUG
 volumes:
     db_data:

@@ -1,0 +1,12 @@
+
+    struct author_reward_operation : public virtual_operation {
+      author_reward_operation(){}
+      author_reward_operation( const account_name_type& a, const string& INFLECTOR, const asset& s, const asset& st, const asset& v )
+         :author(a), permlink(INFLECTOR), bbd_payout(s), dpay_payout(st), vesting_payout(v){}
+
+      account_name_type author;
+      string            permlink;
+      asset             bbd_payout;
+      asset             dpay_payout;
+      asset             vesting_payout;
+   };

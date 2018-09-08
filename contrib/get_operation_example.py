@@ -12,13 +12,13 @@ p = inflect.engine()
 BAD_MYSQLSH_OUTPUT = '''{\n    "info": "mysqlx: [Warning] Using a password on the command line interface can be insecure."\n}\n'''
 
 OLD_TABLE_NAME_MAP = {
-    'delegate_vesting_shares_operation': 'sbds_tx_delegate_vesting_shares',
-    'decline_voting_rights_operation': 'sbds_tx_decline_voting_rights',
-    'cancel_transfer_from_savings_operation': 'sbds_tx_cancel_transfer_from_savings',
-    'transfer_from_savings_operation': 'sbds_tx_transfer_from_savings',
-    'transfer_to_savings_operation': 'sbds_tx_transfer_to_savings',
-    'set_withdraw_vesting_route_operation': 'sbds_tx_withdraw_vesting_routes',
-    'comment_options_operation': 'sbds_tx_comments_options'
+    'delegate_vesting_shares_operation': 'dpds_tx_delegate_vesting_shares',
+    'decline_voting_rights_operation': 'dpds_tx_decline_voting_rights',
+    'cancel_transfer_from_savings_operation': 'dpds_tx_cancel_transfer_from_savings',
+    'transfer_from_savings_operation': 'dpds_tx_transfer_from_savings',
+    'transfer_to_savings_operation': 'dpds_tx_transfer_to_savings',
+    'set_withdraw_vesting_route_operation': 'dpds_tx_withdraw_vesting_routes',
+    'comment_options_operation': 'dpds_tx_comments_options'
 }
 
 def op_old_table_name(op_name):
@@ -26,7 +26,7 @@ def op_old_table_name(op_name):
     table_name = OLD_TABLE_NAME_MAP.get(op_name)
     if not table_name:
         short_op_name = op_name.replace('_operation','')
-        table_name =  f'sbds_tx_{INFLECTOR.plural(short_op_name)}'
+        table_name =  f'dpds_tx_{INFLECTOR.plural(short_op_name)}'
     else:
         print(table_name)
 
@@ -35,7 +35,7 @@ def op_old_table_name(op_name):
 def get_op_example(op_name, db_url, table_name=None):
     if not table_name:
         table_name = op_old_table_name(op_name)
-    op_block_query = f'SELECT {table_name}.block_num, transaction_num, operation_num, raw FROM {table_name} JOIN sbds_core_blocks ON {table_name}.block_num=sbds_core_blocks.block_num LIMIT 1;'
+    op_block_query = f'SELECT {table_name}.block_num, transaction_num, operation_num, raw FROM {table_name} JOIN dpds_core_blocks ON {table_name}.block_num=dpds_core_blocks.block_num LIMIT 1;'
     proc_result = subprocess.run([
         'mysqlsh',
         '--json',

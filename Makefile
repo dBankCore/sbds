@@ -5,7 +5,7 @@ DOCS_DIR := $(ROOT_DIR)/docs
 DOCS_BUILD_DIR := $(DOCS_DIR)/_build
 
 PROJECT_NAME := $(notdir $(ROOT_DIR))
-PROJECT_DOCKER_TAG := steemit/$(PROJECT_NAME)
+PROJECT_DOCKER_TAG := dpays/$(PROJECT_NAME)
 
 PYTHON_VERSION := 3.6
 PYTHON := $(shell which python$(PYTHON_VERSION))
@@ -19,14 +19,14 @@ PROJECT_DOCKER_RUN_ARGS := -p8080:8080 --env-file .env
 
 BUILD_DIR := $(ROOT_DIR)/build
 
-CODEGEN_PATH := sbds/codegen
+CODEGEN_PATH := dpds/codegen
 EXAMPLES_PATH :=$(CODEGEN_PATH)/examples
 HEADERS_PATH := $(CODEGEN_PATH)/headers
 TEMPLATES_PATH := $(CODEGEN_PATH)/templates
 
-SBDS_BASE_CMD := $(PIPENV) run python -m sbds.cli
+DPDS_BASE_CMD := $(PIPENV) run python -m dpds.cli
 
-STORAGES_DB_PATH := sbds/storages/db
+STORAGES_DB_PATH := dpds/storages/db
 VIEWS_PATH := $(STORAGES_DB_PATH)/views
 TABLES_PATH := $(STORAGES_DB_PATH)/tables
 META_PATH := $(TABLES_PATH)/meta
@@ -158,40 +158,40 @@ sql:
 
 .PHONY: reset-db
 reset-db:
-	$(PIPENV) run python -m sbds.cli db reset
+	$(PIPENV) run python -m dpds.cli db reset
 
 .PHONY: init-db
 init-db:
-	$(PIPENV) run python -m sbds.cli db init
+	$(PIPENV) run python -m dpds.cli db init
 
 .PHONY: ipython
 ipython:
-	envdir envd $(PIPENV) run ipython -i sbds/storages/db/scripts/ipython_init.py
+	envdir envd $(PIPENV) run ipython -i dpds/storages/db/scripts/ipython_init.py
 
 README.rst: docs/src/README.rst
 	cd $(DOCS_DIR) && $(MAKE) README
 
 # --- CODEGEN -- #
 $(VIRTUAL_OPERATIONS_PATH)/%.py: $(TEMPLATES_PATH)/operation_class.tmpl
-	$(SBDS_BASE_CMD) codegen generate-class $(*F) \
+	$(DPDS_BASE_CMD) codegen generate-class $(*F) \
 	--templates_path $(TEMPLATES_PATH) \
 	--headers_path $(HEADERS_PATH) \
 	--examples_path $(EXAMPLES_PATH) > $@
 
 $(OPERATIONS_PATH)/%.py: $(TEMPLATES_PATH)/operation_class.tmpl
-	$(SBDS_BASE_CMD) codegen generate-class $(*F) \
+	$(DPDS_BASE_CMD) codegen generate-class $(*F) \
 	--templates_path $(TEMPLATES_PATH) \
 	--headers_path $(HEADERS_PATH) \
 	--examples_path $(EXAMPLES_PATH) > $@
 
 $(VIEW_PATH)/%.py: $(TEMPLATES_PATH)/operation_class.tmpl
-	$(SBDS_BASE_CMD) codegen generate-view $(*F) \
+	$(DPDS_BASE_CMD) codegen generate-view $(*F) \
 	--templates_path $(TEMPLATES_PATH) \
 	--headers_path $(HEADERS_PATH) \
 	--examples_path $(EXAMPLES_PATH) > $@
 
 $(META_PATH)/%.py: $(TEMPLATES_PATH)/operation_class.tmpl
-	$(SBDS_BASE_CMD) codegen generate-meta $(*F) \
+	$(DPDS_BASE_CMD) codegen generate-meta $(*F) \
 	--templates_path $(TEMPLATES_PATH) \
 	--headers_path $(HEADERS_PATH) \
 	--examples_path $(EXAMPLES_PATH) > $@
@@ -217,8 +217,7 @@ build-ops: ops virtual-ops
 rebuild-ops: remove-ops build-ops
 
 $(VIEWS_PATH)/%.py: $(TEMPLATES_PATH)/operation_class.tmpl
-	$(SBDS_BASE_CMD) codegen generate-view $(*F) \
+	$(DPDS_BASE_CMD) codegen generate-view $(*F) \
 	--templates_path $(TEMPLATES_PATH) \
 	--headers_path $(HEADERS_PATH) \
 	--examples_path $(EXAMPLES_PATH) > $@
-

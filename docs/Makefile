@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = sbds
+SPHINXPROJ    = dpds
 SOURCEDIR     = .
 BUILDDIR      = _build
 _README        = ../README.rst

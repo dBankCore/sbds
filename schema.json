@@ -1,7 +1,7 @@
 {
-  "id": "https://schema.steemitdev/blockchain/block/schema.json",
+  "id": "https://schema.dpays/blockchain/block/schema.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Steem Blockchain Schema",
+  "title": "dPay Blockchain Schema",
   "type": "object",
   "properties": {
     "extensions": {
@@ -133,7 +133,7 @@
       "type": "string",
       "minLength": 3,
       "maxLength": 16,
-      "description": "https://github.com/steemit/steem/blob/master/libraries/protocol/include/steemit/protocol/config.hpp#L207"
+      "description": "https://github.com/dpays/dpay/blob/master/libraries/protocol/include/dpay/protocol/config.hpp#L207"
     },
     "account_update": {
       "properties": {
@@ -203,7 +203,7 @@
     },
     "asset": {
       "type": "string",
-      "pattern": "\\d+(\\.\\d+)?\\s+(STEEM|SBD|VESTS)+"
+      "pattern": "\\d+(\\.\\d+)?\\s+(STEEM|BBD|VESTS)+"
     },
     "authority": {
       "type": "object",
@@ -292,10 +292,10 @@
         "account": {
           "$ref": "#/definitions/account_name_type"
         },
-        "reward_steem": {
+        "reward_dpay": {
           "$ref": "#/definitions/asset"
         },
-        "reward_sbd": {
+        "reward_bbd": {
           "$ref": "#/definitions/asset"
         },
         "reward_vests": {
@@ -304,8 +304,8 @@
       },
       "required": [
         "account",
-        "reward_sbd",
-        "reward_steem",
+        "reward_bbd",
+        "reward_dpay",
         "reward_vests"
       ],
       "type": "object",
@@ -358,12 +358,12 @@
         "max_accepted_payout": {
           "$ref": "#/definitions/asset"
         },
-        "percent_steem_dollars": {
+        "percent_dpay_dollars": {
           "$ref": "#/definitions/uint16_t",
-          "description": "SBD value of the maximum payout this post will receive"
+          "description": "BBD value of the maximum payout this post will receive"
         },
         "allow_votes": {
-          "description": "the percent of Steem Dollars to key, unkept amounts will be received as Steem Power",
+          "description": "the percent of BEX Dollars to key, unkept amounts will be received as BEX Power",
           "type": "boolean"
         },
         "allow_curation_rewards": {
@@ -371,7 +371,7 @@
           "type": "boolean"
         },
         "extensions": {
-          "$ref": "#/definitions/steemit::protocol::comment_options_extensions_type",
+          "$ref": "#/definitions/dpay::protocol::comment_options_extensions_type",
           "description": "allows voters to recieve curation rewards. Rewards return to reward fund."
         }
       },
@@ -381,11 +381,11 @@
         "author",
         "extensions",
         "max_accepted_payout",
-        "percent_steem_dollars",
+        "percent_dpay_dollars",
         "permlink"
       ],
       "type": "object",
-      "description": "Authors of posts may not want all of the benefits that come from creating a post. This  operation allows authors to update properties associated with their post.  The max_accepted_payout may be decreased, but never increased.  The percent_steem_dollars may be decreased, but never increased",
+      "description": "Authors of posts may not want all of the benefits that come from creating a post. This  operation allows authors to update properties associated with their post.  The max_accepted_payout may be decreased, but never increased.  The percent_dpay_dollars may be decreased, but never increased",
       "title": "comment_options"
     },
     "convert": {
@@ -406,7 +406,7 @@
         "requestid"
       ],
       "type": "object",
-      "description": "This operation instructs the blockchain to start a conversion between STEEM and SBD,  The funds are deposited after STEEMIT_CONVERSION_DELAY",
+      "description": "This operation instructs the blockchain to start a conversion between STEEM and BBD,  The funds are deposited after STEEMIT_CONVERSION_DELAY",
       "title": "convert"
     },
     "custom": {
@@ -650,12 +650,12 @@
           "$ref": "#/definitions/uint32_t",
           "description": "the account that should receive funds (might be from, might be to)"
         },
-        "sbd_amount": {
+        "bbd_amount": {
           "$ref": "#/definitions/asset"
         },
-        "steem_amount": {
+        "dpay_amount": {
           "$ref": "#/definitions/asset",
-          "description": "the amount of sbd to release"
+          "description": "the amount of bbd to release"
         }
       },
       "required": [
@@ -663,8 +663,8 @@
         "escrow_id",
         "from",
         "receiver",
-        "sbd_amount",
-        "steem_amount",
+        "bbd_amount",
+        "dpay_amount",
         "to",
         "who"
       ],
@@ -686,10 +686,10 @@
         "escrow_id": {
           "$ref": "#/definitions/uint32_t"
         },
-        "sbd_amount": {
+        "bbd_amount": {
           "$ref": "#/definitions/asset"
         },
-        "steem_amount": {
+        "dpay_amount": {
           "$ref": "#/definitions/asset"
         },
         "fee": {
@@ -713,8 +713,8 @@
         "from",
         "json_meta",
         "ratification_deadline",
-        "sbd_amount",
-        "steem_amount",
+        "bbd_amount",
+        "dpay_amount",
         "to"
       ],
       "type": "object",
@@ -738,7 +738,7 @@
         "publisher"
       ],
       "type": "object",
-      "description": "Feeds can only be published by the top N witnesses which are included in every round and are  used to define the exchange rate between steem and the dollar.",
+      "description": "Feeds can only be published by the top N witnesses which are included in every round and are  used to define the exchange rate between BEX and the dollar.",
       "title": "feed_publish"
     },
     "int16_t": {
@@ -1493,10 +1493,10 @@
           "$ref": "#/definitions/uint64_t"
         },
         "work": {
-          "$ref": "#/definitions/steemit::protocol::pow"
+          "$ref": "#/definitions/dpay::protocol::pow"
         },
         "props": {
-          "$ref": "#/definitions/steemit::protocol::chain_properties"
+          "$ref": "#/definitions/dpay::protocol::chain_properties"
         }
       },
       "required": [
@@ -1512,13 +1512,13 @@
     "pow2": {
       "properties": {
         "work": {
-          "$ref": "#/definitions/steemit::protocol::pow2_work"
+          "$ref": "#/definitions/dpay::protocol::pow2_work"
         },
         "new_owner_key": {
           "$ref": "#/definitions/public_key_type"
         },
         "props": {
-          "$ref": "#/definitions/steemit::protocol::chain_properties"
+          "$ref": "#/definitions/dpay::protocol::chain_properties"
         }
       },
       "required": [
@@ -1606,7 +1606,7 @@
         "second_block"
       ],
       "type": "object",
-      "description": "This operation is used to report a miner who signs two blocks at the same time. To be valid, the violation must be reported within STEEMIT_MAX_WITNESSES blocks of the head block (1 round) and the producer must be in the ACTIVE witness set. Users not in the ACTIVE witness set should not have to worry about their key getting compromised and being used to produced multiple blocks so the attacker can report it and steel their vesting steem. The result of the operation is to transfer the full VESTING STEEM balance of the block producer to the reporter.",
+      "description": "This operation is used to report a miner who signs two blocks at the same time. To be valid, the violation must be reported within STEEMIT_MAX_WITNESSES blocks of the head block (1 round) and the producer must be in the ACTIVE witness set. Users not in the ACTIVE witness set should not have to worry about their key getting compromised and being used to produced multiple blocks so the attacker can report it and steel their vesting BEX. The result of the operation is to transfer the full VESTING STEEM balance of the block producer to the reporter.",
       "title": "report_over_production"
     },
     "request_account_recovery": {
@@ -1701,19 +1701,19 @@
         "to_account"
       ],
       "type": "object",
-      "description": "Allows an account to setup a vesting withdraw but with the additional request for the funds to be transferred directly to another account's balance rather than the withdrawing account. In addition, those funds can be immediately vested again, circumventing the conversion from vests to steem and back, guaranteeing they maintain their value.",
+      "description": "Allows an account to setup a vesting withdraw but with the additional request for the funds to be transferred directly to another account's balance rather than the withdrawing account. In addition, those funds can be immediately vested again, circumventing the conversion from vests to BEX and back, guaranteeing they maintain their value.",
       "title": "set_withdraw_vesting_route"
     },
     "signed_block_header": {
       "type": "string"
     },
-    "steemit::protocol::chain_properties": {
+    "dpay::protocol::chain_properties": {
       "type": "object",
       "properties": {
         "account_creation_fee": {
           "$ref": "#/definitions/asset"
         },
-        "sbd_interest_rate": {
+        "bbd_interest_rate": {
           "type": "integer"
         },
         "maximum_block_size": {
@@ -1721,10 +1721,10 @@
         }
       }
     },
-    "steemit::protocol::comment_options_extensions_type": {
+    "dpay::protocol::comment_options_extensions_type": {
       "type": "array"
     },
-    "steemit::protocol::pow": {
+    "dpay::protocol::pow": {
       "type": "object",
       "properties": {
         "signature": {
@@ -1741,7 +1741,7 @@
         }
       }
     },
-    "steemit::protocol::pow2_work": {
+    "dpay::protocol::pow2_work": {
       "type": "array"
     },
     "time_point_sec": {
@@ -1954,7 +1954,7 @@
           "$ref": "#/definitions/public_key_type"
         },
         "props": {
-          "$ref": "#/definitions/steemit::protocol::chain_properties"
+          "$ref": "#/definitions/dpay::protocol::chain_properties"
         },
         "fee": {
           "$ref": "#/definitions/asset"

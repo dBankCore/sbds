@@ -7,4 +7,4 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: echo "Ignore CircleCI detected dependencies"
-      - run: docker build -t steemit/sbds .
+      - run: docker build -t dpays/dpds .

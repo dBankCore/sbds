@@ -1,0 +1,7 @@
+#!/bin/bash
+
+POPULATE_CMD="$(which populate)"
+
+exec setuidgid nobody python3.6 "${POPULATE_CMD}" \
+  --database_url "${DATABASE_URL}" \
+  --dpayd_http_url "${DPAYD_HTTP_URL}"

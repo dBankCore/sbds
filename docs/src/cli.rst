@@ -1,7 +1,7 @@
-.. command-output:: sbds chain --help
+.. command-output:: dpds chain --help
 
-.. command-output:: sbds chain block_height --help
+.. command-output:: dpds chain block_height --help
 
-.. command-output:: sbds chain get-blocks --help
+.. command-output:: dpds chain get-blocks --help
 
-.. command-output:: sbds chain stream-blocks --help
+.. command-output:: dpds chain stream-blocks --help

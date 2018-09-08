@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DPDS_CMD = "$(which dpds)"
+
+exec setuidgid nobody python3.6 "${DPDS_CMD}" server serve \
+  --database_url "${DATABASE_URL}" \
+  --host "${HTTP_HOST:-0.0.0.0}" \
+  --port "${HTTP_PORT:-9000}"
