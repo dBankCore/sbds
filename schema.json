@@ -203,7 +203,7 @@
     },
     "asset": {
       "type": "string",
-      "pattern": "\\d+(\\.\\d+)?\\s+(STEEM|BBD|VESTS)+"
+      "pattern": "\\d+(\\.\\d+)?\\s+(BEX|BBD|VESTS)+"
     },
     "authority": {
       "type": "object",
@@ -406,7 +406,7 @@
         "requestid"
       ],
       "type": "object",
-      "description": "This operation instructs the blockchain to start a conversion between STEEM and BBD,  The funds are deposited after STEEMIT_CONVERSION_DELAY",
+      "description": "This operation instructs the blockchain to start a conversion between BEX and BBD,  The funds are deposited after DPAY_CONVERSION_DELAY",
       "title": "convert"
     },
     "custom": {
@@ -1606,7 +1606,7 @@
         "second_block"
       ],
       "type": "object",
-      "description": "This operation is used to report a miner who signs two blocks at the same time. To be valid, the violation must be reported within STEEMIT_MAX_WITNESSES blocks of the head block (1 round) and the producer must be in the ACTIVE witness set. Users not in the ACTIVE witness set should not have to worry about their key getting compromised and being used to produced multiple blocks so the attacker can report it and steel their vesting BEX. The result of the operation is to transfer the full VESTING STEEM balance of the block producer to the reporter.",
+      "description": "This operation is used to report a miner who signs two blocks at the same time. To be valid, the violation must be reported within DPAY_MAX_WITNESSES blocks of the head block (1 round) and the producer must be in the ACTIVE witness set. Users not in the ACTIVE witness set should not have to worry about their key getting compromised and being used to produced multiple blocks so the attacker can report it and steel their vesting BEX. The result of the operation is to transfer the full VESTING BEX balance of the block producer to the reporter.",
       "title": "report_over_production"
     },
     "request_account_recovery": {
@@ -1810,7 +1810,7 @@
         "to"
       ],
       "type": "object",
-      "description": "@ingroup operations @brief Transfers STEEM from one account to another.",
+      "description": "@ingroup operations @brief Transfers BEX from one account to another.",
       "title": "transfer"
     },
     "transfer_from_savings": {
@@ -1884,7 +1884,7 @@
         "to"
       ],
       "type": "object",
-      "description": "This operation converts STEEM into VFS (Vesting Fund Shares) at  the current exchange rate. With this operation it is possible to  give another account vesting shares so that faucets can  pre-fund new accounts with vesting shares.",
+      "description": "This operation converts BEX into VFS (Vesting Fund Shares) at  the current exchange rate. With this operation it is possible to  give another account vesting shares so that faucets can  pre-fund new accounts with vesting shares.",
       "title": "transfer_to_vesting"
     },
     "uint16_t": {

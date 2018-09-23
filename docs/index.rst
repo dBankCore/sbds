@@ -1,9 +1,9 @@
-.. dpds documentation master file, created by
+.. DPDS documentation master file, created by
    sphinx-quickstart on Sat Feb 11 01:37:43 2017.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to dpds's documentation!
+Welcome to DPDS's documentation!
 ================================
 
 .. toctree::

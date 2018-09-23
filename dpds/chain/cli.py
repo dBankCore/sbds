@@ -101,7 +101,7 @@ def block_height(url):
     '--url',
     metavar='DPAYD_HTTP_URL',
     envvar='DPAYD_HTTP_URL',
-    help='DPayd HTTP server URL')
+    help='dpayd HTTP server URL')
 def get_blocks_fast(start, end, chunksize, max_workers, url):
     """Request blocks from dpayd in JSON format"""
 

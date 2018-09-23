@@ -19,7 +19,7 @@ services:
     environment:
       DATABASE_URL: mysql://root:root_password@mysql:3306/testdb
       DPDS_LOG_LEVEL: DEBUG
-      STEEMD_URL: https://greatchain.dpays.io
-      STEEMD_HTTP_URL: https://api.dpays.io
+      DPAYD_URL: https://greatchain.dpays.io
+      DPAYD_HTTP_URL: https://api.dpays.io
     links:
       - mysql:db

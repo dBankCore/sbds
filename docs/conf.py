@@ -25,7 +25,7 @@ from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 
 # setup AutoStructify
-github_doc_root = 'https://github.com/dpays/tree/master/docs'
+github_doc_root = 'https://dpaydata.com/docs/'
 
 
 def setup(app):
@@ -156,14 +156,14 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'dpds.tex', 'dpds Documentation', 'labs@dpays.io', 'manual'),
+    (master_doc, 'dpds.tex', 'DPDS Documentation', 'labs@dpays.io', 'manual'),
 ]
 
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, 'dpds', 'dpds Documentation', [author], 1)]
+man_pages = [(master_doc, 'dpds', 'DPDS Documentation', [author], 1)]
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -171,6 +171,6 @@ man_pages = [(master_doc, 'dpds', 'dpds Documentation', [author], 1)]
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'dpds', 'dpds Documentation', author, 'dpds',
+    (master_doc, 'dpds', 'DPDS Documentation', author, 'dpds',
      'One line description of project.', 'Miscellaneous'),
 ]

@@ -1,5 +1,5 @@
 
-DPDS (Steem Blockchain Data Service)
+DPDS (dPay Blockchain Data Service)
 ************************************
 
 
@@ -90,7 +90,7 @@ receives it.  This daemon **does not** implement any consensus rules.
 CLI
 ===
 
-The **dpds** package installs the ``dpds`` CLI.
+The **DPDS** package installs the ``DPDS`` CLI.
 
 More information
 
@@ -99,7 +99,7 @@ More information
    $ dpds --help
    Usage: dpds [OPTIONS] COMMAND [ARGS]...
 
-     The *dpds* CLI manages storage, retrieval, and querying of the Steem
+     The *dpds* CLI manages storage, retrieval, and querying of the dPay
      blockchain.
 
      dpds has several commands, each of which has additional subcommands.
@@ -111,7 +111,7 @@ More information
      --help  Show this message and exit.
 
    Commands:
-     chain        Query the Steem blockchain
+     chain        Query the dPay blockchain
      checkpoints  retrieve blocks from blockchain checkpoints
      db           Interact with an SQL storage backend
      s3           Interact with an S3 storage backend

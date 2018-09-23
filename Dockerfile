@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.19
 
-ENV STEEMD_HTTP_URL https://greatchain.dpays.io
+ENV DPAYD_HTTP_URL https://greatchain.dpays.io
 ENV DPDS_LOG_LEVEL INFO
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8

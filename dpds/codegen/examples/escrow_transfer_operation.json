@@ -4,7 +4,7 @@
   "json_meta": "{}",
   "dpay_amount": "0.000 BEX",
   "escrow_expiration": "2017-02-28T11:22:39",
-  "fee": "0.100 SBD",
+  "fee": "0.100 BBD",
   "to": "james",
   "ratification_deadline": "2017-02-26T11:22:39",
   "escrow_id": 23456789,
