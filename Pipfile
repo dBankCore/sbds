@@ -1,11 +1,8 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 
-
 [dev-packages]
-
 "autopep8" = "*"
 "pep8" = "*"
 ipython = "*"
@@ -28,9 +25,7 @@ python-rapidjson = "*"
 inflect = "*"
 awscli = "*"
 
-
 [packages]
-
 aiodns = "*"
 aiofiles = "*"
 aiohttp = "*"
@@ -72,8 +67,7 @@ serpy = "*"
 inflect = "*"
 "boto3" = "*"
 "psycopg2" = "*"
-
+dpds = {path = ".", editable = true}
 
 [requires]
-
 python_version = "3.6"

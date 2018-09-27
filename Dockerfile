@@ -1,6 +1,6 @@
-FROM phusion/baseimage:0.9.19
+FROM kennethreitz/pipenv
 
-ENV DPAYD_HTTP_URL https://greatchain.dpays.io
+ENV DPAYD_HTTP_URL https://greatbase.dpaynodes.com
 ENV DPDS_LOG_LEVEL INFO
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
@@ -41,15 +41,6 @@ RUN \
     apt-get clean
 
 
-RUN \
-    wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz && \
-    tar xvf Python-3.6.4.tar.xz && \
-    cd Python-3.6.4/ && \
-    ./configure && \
-    make altinstall && \
-    cd .. && \
-    rm -rf Python-3.6.4.tar.xz Python-3.6.4/
-
 # nginx
 RUN \
   mkdir -p /var/lib/nginx/body && \
@@ -69,8 +60,8 @@ RUN \
   chown www-data:www-data /var/www/.cache
 
 RUN \
-    python3.6 -m pip install --upgrade pip && \
-    python3.6 -m pip install pipenv
+    python -m pip3 install --upgrade pip && \
+    python -m pip3 install pipenv
 
 COPY . /app
 
@@ -80,7 +71,7 @@ RUN \
 
 WORKDIR /app
 
-RUN pipenv install --python 3.6 --dev
+RUN pipenv install
 
 RUN \
     apt-get remove -y \
@@ -98,3 +89,4 @@ RUN \
         /usr/local/include
 
 EXPOSE ${HTTP_SERVER_PORT}
+
